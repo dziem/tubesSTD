@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1488480768 source:e:\strukdat\tubes\tubes\main.cpp
+	<iostream>
+	"list_relasi.h"
+
+1488499954 e:\strukdat\tubes\tubes\list_relasi.h
+	"list_instruktur.h"
+	"list_siswa.h"
+
+1488499343 e:\strukdat\tubes\tubes\list_instruktur.h
+	<iostream>
+
+1488498093 e:\strukdat\tubes\tubes\list_siswa.h
+	<iostream>
+
+1488480773 source:e:\strukdat\tubes\tubes\list_relasi.cpp
+	"list_relasi.h"
+
+1488499877 source:e:\strukdat\tubes\tubes\list_instruktur.cpp
+	"list_instruktur.h"
+
+1488499867 source:e:\strukdat\tubes\tubes\list_siswa.cpp
+	"list_siswa.h"
+

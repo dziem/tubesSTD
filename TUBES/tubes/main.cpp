@@ -1,10 +1,11 @@
 #include <iostream>
-#include "list_relasi.h"
+#include "main_procedure.h"
 
 using namespace std;
 
 int main()
 {
     cout << "Hello world!" << endl;
+    tampilmenu();
     return 0;
 }

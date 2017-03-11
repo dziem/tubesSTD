@@ -30,14 +30,15 @@ struct list_relasi{
     address_relasi last;
 };
 
-void createListRelasi(list_relasi &L); //buat
-address_relasi alokasiRelasi(infotype_relasi P); //gausah
-address_relasi dealokasiRelasi(address_relasi P); //buat
-void insertRelasi(list_relasi &L, address_relasi P); //buat
-void deleteFirstRelasi(list_relasi &L); //buat
-void deleteLastRelasi(list_relasi &L); //buat
-void deleteAfterRelasi(list_relasi &L, address_relasi prec); //buat
-void deleteRelasi(list_relasi &L); //buat
-address_relasi findRelasi(list_relasi L, infotype_relasi P); //buat
+void createListRelasi(list_relasi &L);
+address_relasi alokasiRelasi(infotype_relasi P);
+address_relasi dealokasiRelasi(address_relasi P);
+void insertRelasi(list_relasi &L, address_relasi P);
+void deleteFirstRelasi(list_relasi &L);
+void deleteLastRelasi(list_relasi &L);
+void deleteAfterRelasi(list_relasi &L, address_relasi Prec);
+void deleteRelasi(list_relasi &L);
+void printRelasi(list_relasi L);
+address_relasi findRelasi(list_relasi L, infotype_relasi P);
 
 #endif // LIST_RELASI_H_INCLUDED

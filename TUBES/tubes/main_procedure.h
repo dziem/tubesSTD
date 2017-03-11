@@ -18,5 +18,8 @@ void addRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS);
 void delInstruktur(list_instruktur &L, list_relasi &LR);
 void delSiswa(list_siswa &L, list_relasi &LR);
 void delRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS);
+void findIns(list_instruktur L);
+void findSis(list_siswa L);
+void findRel(list_relasi LR, list_instruktur LI, list_siswa LS);
 
 #endif // MAIN_PROCEDURE_H_INCLUDED

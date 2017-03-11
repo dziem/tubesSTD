@@ -1,5 +1,6 @@
 #include "main_procedure.h"
 
+/* Basic Main Function */
 void clearscreen(){
     system ("CLS");
 }
@@ -81,15 +82,15 @@ void aksimenu(int menu, int sub, list_instruktur &l_ins, list_siswa &l_sis, list
     case 3:
         switch(sub){
         case 1:
-            cout << "find instruktur" << endl;
+            findIns(l_ins);
             getch();
         break;
         case 2:
-            cout << "find siswa" << endl;
+            findSis(l_sis);
             getch();
         break;
         case 3:
-            cout << "find relasi" << endl;
+            findRel(l_rel, l_ins, l_sis);
             getch();
         break;
         }
@@ -139,6 +140,8 @@ void tampilmenu(){
         }
     }while(stop != true);
 }
+
+/* Insert to list function */
 void addInstruktur(list_instruktur &L){
     infotype_instruktur p;
     clearscreen();
@@ -186,6 +189,8 @@ void addRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS){
         cout << endl << "Gagal menambahkan relasi" << endl;
     }
 }
+
+/* Delete from list function */
 void delInstruktur(list_instruktur &L, list_relasi &LR){
     infotype_instruktur p;
     infotype_relasi rel;
@@ -251,5 +256,66 @@ void delRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS){
         cout << endl << "Berhasil menghapus relasi" << endl;
     }else{
         cout << endl << "Gagal menghapus relasi" << endl;
+    }
+}
+
+/* Find element from list function */
+void findIns(list_instruktur L){
+    infotype_instruktur p;
+    clearscreen();
+    cout << "Find element from list instruktur" << endl;
+    cout << "Masukkan nama instruktur yang akan dicari : ";
+    cin >> p.nama;
+    cout << "Masukkan nomor telepon instruktur yang akan dicari : ";
+    cin >> p.telp;
+    address_instruktur q = findInstruktur(L, p);
+    if(q != nil){
+        cout << "Instruktur " << p.nama << " ada di dalam list" << endl;
+    }else{
+        cout << "Instruktur " << p.nama << " tidak ada di dalam list" << endl;
+    }
+}
+void findSis(list_siswa L){
+    infotype_siswa p;
+    clearscreen();
+    cout << "Find element from list siswa" << endl;
+    cout << "Masukkan nama siswa yang akan dicari : ";
+    cin >> p.nama;
+    cout << "Masukkan alamat siswa yang akan dicari : ";
+    cin >> p.alamat;
+    address_siswa q = findSiswa(L, p);
+    if(q != nil){
+        cout << "Siswa " << p.nama << " ada di dalam list" << endl;
+    }else{
+        cout << "Siswa " << p.nama << " tidak ada di dalam list" << endl;
+    }
+}
+void findRel(list_relasi LR, list_instruktur LI, list_siswa LS){
+    clearscreen();
+    cout << "Find element from list relasi" << endl;
+    infotype_instruktur i;
+    cout << "Masukkan nama instruktur : ";
+    cin >> i.nama;
+    cout << "Masukkan nomor telepon instruktur : ";
+    cin >> i.telp;
+    address_instruktur adr_i = findInstruktur(LI,i);
+    infotype_siswa s;
+    cout << "Masukkan nama siswa : ";
+    cin >> s.nama;
+    cout << "Masukkan alamat siswa : ";
+    cin >> s.alamat;
+    address_siswa adr_s = findSiswa(LS, s);
+    if(adr_i != nil && adr_s != nil){
+        infotype_relasi r;
+        r.instruktur = adr_i;
+        r.siswa = adr_s;
+        address_relasi rel = findRelasi(LR, r);
+        if(rel != nil){
+            cout << "Relasi antara instruktur " << i.nama << " dan siswa " << s.nama << " ada di dalam list" << endl;
+        }else{
+            cout << "Relasi antara instruktur " << i.nama << " dan siswa " << s.nama << " tidak ada di dalam list" << endl;
+        }
+    }else{
+        cout << "Relasi antara instruktur " << i.nama << " dan siswa " << s.nama << " tidak ada di dalam list" << endl;
     }
 }

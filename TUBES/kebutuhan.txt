@@ -1,14 +1,14 @@
 PEKERJAAN
-1. create semua list
-2. alokasi semua list
-3. find siswa & instruktur
-4. insert semua list
-5. delete semua list, delete relasi
-6. cek jumlah siswa per instruktur and vice versa
-7. Print
+1. create semua list done
+2. alokasi semua list done
+3. find siswa & instruktur done
+4. insert semua list done
+5. delete semua list, delete relasi done
+6. cek jumlah siswa per instruktur and vice versa not yet
+7. Print done
 
 PERTANYAAN
-kalo hapus siswa ato instruktur apakah perlu hapus relasi ?
-hapus relasi bagaimana ?
-alokasi relasi bagaimana ?
-cara cek jumlah siswa per instruktur and vice versa ?
+kalo hapus siswa ato instruktur apakah perlu hapus relasi ? clear
+hapus relasi bagaimana ? clear
+alokasi relasi bagaimana ? clear
+cara cek jumlah siswa per instruktur and vice versa ? not yet

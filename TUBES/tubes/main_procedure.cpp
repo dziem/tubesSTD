@@ -1,8 +1,12 @@
 #include "main_procedure.h"
 
+void clearscreen(){
+    system ("CLS");
+}
 int menu(){
     bool stop = false;
     int i;
+    clearscreen();
     cout << "Pilih operasi list" << endl;
     cout << "1. Insert / Add" << endl;
     cout << "2. Delete" << endl;
@@ -23,6 +27,7 @@ int menu(){
 int submenu(){
     bool stop = false;
     int i;
+    clearscreen();
     cout << "Pilih list yang akan dioperasi" << endl;
     cout << "1. List Instruktur" << endl;
     cout << "2. List Siswa" << endl;
@@ -39,31 +44,37 @@ int submenu(){
     }while(stop != true);
     return i;
 }
-void aksimenu(int menu, int sub){
+void aksimenu(int menu, int sub, list_instruktur &l_ins, list_siswa &l_sis, list_relasi &l_rel){
     switch(menu){
     case 1:
         switch(sub){
         case 1:
-            cout << "insert instruktur" << endl;
+            addInstruktur(l_ins);
+            getch();
         break;
         case 2:
-            cout << "insert siswa" << endl;
+            addSiswa(l_sis);
+            getch();
         break;
         case 3:
-            cout << "insert relasi" << endl;
+            addRelasi(l_rel,l_ins,l_sis);
+            getch();
         break;
         }
     break;
     case 2:
         switch(sub){
         case 1:
-            cout << "delete instruktur" << endl;
+            delInstruktur(l_ins, l_rel);
+            getch();
         break;
         case 2:
-            cout << "delete siswa" << endl;
+            delSiswa(l_sis, l_rel);
+            getch();
         break;
         case 3:
-            cout << "delete relasi" << endl;
+            delRelasi(l_rel, l_ins, l_sis);
+            getch();
         break;
         }
     break;
@@ -71,31 +82,49 @@ void aksimenu(int menu, int sub){
         switch(sub){
         case 1:
             cout << "find instruktur" << endl;
+            getch();
         break;
         case 2:
             cout << "find siswa" << endl;
+            getch();
         break;
         case 3:
             cout << "find relasi" << endl;
+            getch();
         break;
         }
     break;
     case 4:
         switch(sub){
         case 1:
-            cout << "print instruktur" << endl;
+            clearscreen();
+            cout << "Print list instruktur" << endl;
+            printInstruktur(l_ins);
+            getch();
         break;
         case 2:
-            cout << "print siswa" << endl;
+            clearscreen();
+            cout << "Print list siswa" << endl;
+            printSiswa(l_sis);
+            getch();
         break;
         case 3:
-            cout << "print relasi" << endl;
+            clearscreen();
+            cout << "Print list relasi" << endl;
+            printRelasi(l_rel);
+            getch();
         break;
         }
     break;
     }
 }
 void tampilmenu(){
+    list_instruktur l_ins;
+    list_siswa l_sis;
+    list_relasi l_rel;
+    createListInstruktur(l_ins);
+    createListSiswa(l_sis);
+    createListRelasi(l_rel);
     int i,j;
     bool stop = false;
     do{
@@ -103,10 +132,124 @@ void tampilmenu(){
         if(i != 0){
             j = submenu();
             if(j != 0){
-                aksimenu(i,j);
+                aksimenu(i,j,l_ins,l_sis,l_rel);
             }
         }else{
             stop = true;
         }
     }while(stop != true);
+}
+void addInstruktur(list_instruktur &L){
+    infotype_instruktur p;
+    clearscreen();
+    cout << "Insert list instruktur" << endl;
+    cout << "Masukkan nama instruktur : ";
+    cin >> p.nama;
+    cout << "Masukkan nomor telepon instruktur : ";
+    cin >> p.telp;
+    insertInstruktur(L,alokasiInstruktur(p));
+    cout << endl << "Berhasil insert ke list instruktur" << endl;
+}
+void addSiswa(list_siswa &L){
+    infotype_siswa p;
+    clearscreen();
+    cout << "Insert list siswa" << endl;
+    cout << "Masukkan nama siswa : ";
+    cin >> p.nama;
+    cout << "Masukkan alamat siswa : ";
+    cin >> p.alamat;
+    insertSiswa(L,alokasiSiswa(p));
+    cout << endl << "Berhasil insert ke list siswa" << endl;
+}
+void addRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS){
+    clearscreen();
+    cout << "Menambahkan relasi antara instruktur dan siswa" << endl;
+    infotype_instruktur i;
+    cout << "Masukkan nama instruktur : ";
+    cin >> i.nama;
+    cout << "Masukkan nomor telepon instruktur : ";
+    cin >> i.telp;
+    address_instruktur adr_i = findInstruktur(LI,i);
+    infotype_siswa s;
+    cout << "Masukkan nama siswa : ";
+    cin >> s.nama;
+    cout << "Masukkan alamat siswa : ";
+    cin >> s.alamat;
+    address_siswa adr_s = findSiswa(LS, s);
+    if(adr_i != nil && adr_s != nil){
+        infotype_relasi r;
+        r.instruktur = adr_i;
+        r.siswa = adr_s;
+        insertRelasi(LR, alokasiRelasi(r));
+        cout << endl << "Berhasil menambahkan relasi" << endl;
+    }else{
+        cout << endl << "Gagal menambahkan relasi" << endl;
+    }
+}
+void delInstruktur(list_instruktur &L, list_relasi &LR){
+    infotype_instruktur p;
+    infotype_relasi rel;
+    clearscreen();
+    cout << "Delete list instruktur" << endl;
+    cout << "Masukkan nama instruktur yang akan dihapus : ";
+    cin >> p.nama;
+    cout << "Masukkan nomor telepon instruktur yang akan dihapus : ";
+    cin >> p.telp;
+    address_relasi q = first(LR);
+    while(q != nil){
+        if(infoNama(addressInstruktur(q)) == p.nama && infoTelp(addressInstruktur(q)) == p.telp){
+            rel.instruktur = addressInstruktur(q);
+            rel.siswa = addressSiswa(q);
+            deleteRelasi(LR, rel);
+        }
+        q = next(q);
+    }
+    deleteInstruktur(L,p);
+    cout << endl << "Berhasil delete " << p.nama << " dari list instruktur" << endl;
+}
+void delSiswa(list_siswa &L, list_relasi &LR){
+    infotype_siswa p;
+    infotype_relasi rel;
+    clearscreen();
+    cout << "Delete list siswa" << endl;
+    cout << "Masukkan nama siswa yang akan dihapus : ";
+    cin >> p.nama;
+    cout << "Masukkan alamat siswa yang akan dihapus : ";
+    cin >> p.alamat;
+    address_relasi q = first(LR);
+    while(q != nil){
+        if(infoNama(addressSiswa(q)) == p.nama && infoAlamat(addressSiswa(q)) == p.alamat){
+            rel.instruktur = addressInstruktur(q);
+            rel.siswa = addressSiswa(q);
+            deleteRelasi(LR, rel);
+        }
+        q = next(q);
+    }
+    deleteSiswa(L,p);
+    cout << endl << "Berhasil delete " << p.nama << " dari list siswa" << endl;
+}
+void delRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS){
+    clearscreen();
+    cout << "Menghapus relasi antara instruktur dan siswa" << endl;
+    infotype_instruktur i;
+    cout << "Masukkan nama instruktur yang akan dihapus relasinya : ";
+    cin >> i.nama;
+    cout << "Masukkan nomor telepon insatruktur yang akan dihapus relasinya : ";
+    cin >> i.telp;
+    address_instruktur adr_i = findInstruktur(LI,i);
+    infotype_siswa s;
+    cout << "Masukkan nama siswa yang akan dihapus relasinya : ";
+    cin >> s.nama;
+    cout << "Masukkan alamat siswa yang akan dihapus relasinya : ";
+    cin >> s.alamat;
+    address_siswa adr_s = findSiswa(LS, s);
+    if(adr_i != nil && adr_s != nil){
+        infotype_relasi r;
+        r.instruktur = adr_i;
+        r.siswa = adr_s;
+        deleteRelasi(LR,r);
+        cout << endl << "Berhasil menghapus relasi" << endl;
+    }else{
+        cout << endl << "Gagal menghapus relasi" << endl;
+    }
 }

@@ -27,20 +27,31 @@ void insertSiswa(list_siswa &L, address_siswa P){
 }
 void deleteFirstSiswa(list_siswa &L){
     if(first(L) != nil && last(L) != nil){
-        address_siswa P = first(L);
-        first(L) = next(first(L));
-        prev(first(L)) = nil;
-        dealokasiSiswa(P);
+        if(next(first(L)) == nil){
+            address_siswa P = first(L);
+            first(L) = nil;
+            last(L) = nil;
+            dealokasiSiswa(P);
+        }else{
+            address_siswa P = first(L);
+            first(L) = next(first(L));
+            prev(first(L)) = nil;
+            dealokasiSiswa(P);
+        }
     }else{
         cout << "Gagal delete siswa, list siswa kosong, di prosedur deletefirst" << endl;
     }
 }
 void deleteLastSiswa(list_siswa &L){
     if(first(L) != nil && last(L) != nil){
-        address_siswa P = last(L);
-        last(L) = prev(first(L));
-        next(last(L)) = nil;
-        dealokasiSiswa(P);
+        if(next(first(L)) == nil){
+            deleteFirstSiswa(L);
+        }else{
+            address_siswa P = last(L);
+            last(L) = prev(first(L));
+            next(last(L)) = nil;
+            dealokasiSiswa(P);
+        }
     }else{
         cout << "Gagal delete siswa, list siswa kosong, di prosedur deletelast" << endl;
     }

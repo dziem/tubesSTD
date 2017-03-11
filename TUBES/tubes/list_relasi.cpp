@@ -27,20 +27,31 @@ void insertRelasi(list_relasi &L, address_relasi P){
 }
 void deleteFirstRelasi(list_relasi &L){
     if(first(L) != nil && last(L) != nil){
-        address_relasi P = first(L);
-        first(L) = next(first(L));
-        prev(first(L)) = nil;
-        dealokasiRelasi(P);
+        if(next(first(L)) == nil){
+            address_relasi P = first(L);
+            first(L) = nil;
+            last(L) = nil;
+            dealokasiRelasi(P);
+        }else{
+            address_relasi P = first(L);
+            first(L) = next(first(L));
+            prev(first(L)) = nil;
+            dealokasiRelasi(P);
+        }
     }else{
         cout << "Gagal delete relasi, list relasi kosong, di prosedur deletefirst" << endl;
     }
 }
 void deleteLastRelasi(list_relasi &L){
     if(first(L) != nil && last(L) != nil){
-        address_relasi P = last(L);
-        last(L) = prev(first(L));
-        next(last(L)) = nil;
-        dealokasiRelasi(P);
+        if(next(first(L)) == nil){
+           deleteFirstRelasi(L);
+        }else{
+            address_relasi P = last(L);
+            last(L) = prev(first(L));
+            next(last(L)) = nil;
+            dealokasiRelasi(P);
+        }
     }else{
         cout << "Gagal delete relasi, list relasi kosong, di prosedur deletelast" << endl;
     }

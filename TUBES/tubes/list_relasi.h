@@ -37,7 +37,7 @@ void insertRelasi(list_relasi &L, address_relasi P);
 void deleteFirstRelasi(list_relasi &L);
 void deleteLastRelasi(list_relasi &L);
 void deleteAfterRelasi(list_relasi &L, address_relasi Prec);
-void deleteRelasi(list_relasi &L);
+void deleteRelasi(list_relasi &L, infotype_relasi R);
 void printRelasi(list_relasi L);
 address_relasi findRelasi(list_relasi L, infotype_relasi P);
 

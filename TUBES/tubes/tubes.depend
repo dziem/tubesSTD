@@ -16,18 +16,18 @@
 1489237778 source:e:\strukdat\tubes\tubes\list_relasi.cpp
 	"list_relasi.h"
 
-1489225911 source:e:\strukdat\tubes\tubes\list_instruktur.cpp
+1489271966 source:e:\strukdat\tubes\tubes\list_instruktur.cpp
 	"list_instruktur.h"
 
 1489237669 source:e:\strukdat\tubes\tubes\list_siswa.cpp
 	"list_siswa.h"
 
-1489239692 e:\strukdat\tubes\tubes\main_procedure.h
+1489288830 e:\strukdat\tubes\tubes\main_procedure.h
 	<iostream>
 	<stdlib.h>
 	<conio.h>
 	"list_relasi.h"
 
-1489238228 source:e:\strukdat\tubes\tubes\main_procedure.cpp
+1489286669 source:e:\strukdat\tubes\tubes\main_procedure.cpp
 	"main_procedure.h"
 

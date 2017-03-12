@@ -39,6 +39,8 @@
 		<Unit filename="list_siswa.cpp" />
 		<Unit filename="list_siswa.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="main_procedure.cpp" />
+		<Unit filename="main_procedure.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -103,14 +103,10 @@ void aksimenu(int menu, int sub, list_instruktur &l_ins, list_siswa &l_sis, list
             getch();
         break;
         case 2:
-            clearscreen();
-            cout << "Print list siswa" << endl;
-            printSiswa(l_sis);
-            getch();
+            printSis(l_rel, l_sis);
         break;
         case 3:
             printRel(l_rel);
-            getch();
         break;
         }
     break;
@@ -169,6 +165,7 @@ void addSiswa(list_relasi &LR, list_instruktur LI, list_siswa &LS){
     address_siswa s = findSiswa(LS, p);
     if(s != nil){
         cout << endl << "Gagal insert ke list siswa, data sudah ada" << endl;
+        getch();
     }else{
         insertSiswa(LS,alokasiSiswa(p));
         do{
@@ -188,6 +185,7 @@ void addSiswa(list_relasi &LR, list_instruktur LI, list_siswa &LS){
                 address_relasi rel = findRelasi(LR, r);
                 if(rel != nil){
                     cout << endl << "Gagal menambahkan relasi, relasi sudah ada" << endl;
+                    getch();
                 }else{
                     int j = countSiswaFromInst(LR, i);
                     if(j < 5){
@@ -400,6 +398,43 @@ void findRel(list_relasi LR, list_instruktur LI, list_siswa LS){
 }
 
 /* Print from list function */
+void printSis(list_relasi LR, list_siswa LS){
+    bool stop = false;
+    int i;
+    clearscreen();
+    cout << "Pilih apa yang akan ditampilkan dari list siswa" << endl;
+    cout << "1. Tampilkan semua siswa" << endl;
+    cout << "2. Tampilkan siswa dengan instruktur terbanyak" << endl;
+    cout << "3. Tampilkan siswa dengan instruktur tersedikit" << endl;
+    cout << "0. Back" << endl;
+    do{
+        cout << "Pilih menu : ";
+        cin >> i;
+        if(i >= 0 && i <= 3){
+            stop = true;
+        }else{
+            cout << "Input salah" << endl;
+        }
+    }while(stop != true);
+    switch(i){
+    case 1:
+        cout << "Print semua siswa" << endl;
+        clearscreen();
+        printSiswa(LS);
+        getch();
+    break;
+    case 2:
+        clearscreen();
+        siswaWithMaxInst(LR, LS);
+        getch();
+    break;
+    case 3:
+        clearscreen();
+        siswaWithMinInst(LR, LS);
+        getch();
+    break;
+    }
+}
 void printRel(list_relasi LR){
     bool stop = false;
     int i;
@@ -423,14 +458,17 @@ void printRel(list_relasi LR){
         cout << "Print semua relasi" << endl;
         clearscreen();
         printRelasi(LR);
+        getch();
     break;
     case 2:
         clearscreen();
         printSiswaFromIns(LR);
+        getch();
     break;
     case 3:
         clearscreen();
         printInsFromSiswa(LR);
+        getch();
     break;
     }
 }
@@ -516,5 +554,53 @@ int countInstFromSiswa(list_relasi L, infotype_siswa p){
         return i;
     }else{
         return 0;
+    }
+}
+void siswaWithMaxInst(list_relasi LR, list_siswa LS){
+    if(first(LR) != nil && first(LS)){
+        int maxx,i;
+        address_siswa q = first(LS);
+        address_siswa address_max = first(LS);
+        while(q != nil){
+            infotype_siswa s;
+            s.nama = infoNama(q);
+            s.alamat = infoAlamat(q);
+            i = countInstFromSiswa(LR, s);
+            if(q == first(LS)){
+                maxx = i;
+            }else if(i > maxx){
+                maxx = i;
+                address_max = q;
+            }
+            q = next(q);
+        }
+        cout << "Siswa dengan instruktur terbanyak adalah " << infoNama(address_max) << endl;
+        cout << "Dengan jumlah instruktur " << maxx << endl;
+    }else{
+        cout << "List siswa kosong" << endl;
+    }
+}
+void siswaWithMinInst(list_relasi LR, list_siswa LS){
+    if(first(LR) != nil && first(LS)){
+        int minn,i;
+        address_siswa q = first(LS);
+        address_siswa address_min = first(LS);
+        while(q != nil){
+            infotype_siswa s;
+            s.nama = infoNama(q);
+            s.alamat = infoAlamat(q);
+            i = countInstFromSiswa(LR, s);
+            if(q == first(LS)){
+                minn = i;
+            }else if(i < minn){
+                minn = i;
+                address_min = q;
+            }
+            q = next(q);
+        }
+        cout << "Siswa dengan instruktur tesedikit adalah " << infoNama(address_min) << endl;
+        cout << "Dengan jumlah instruktur " << minn << endl;
+    }else{
+        cout << "List siswa kosong" << endl;
     }
 }

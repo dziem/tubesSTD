@@ -21,9 +21,12 @@ void delRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS);
 void findIns(list_instruktur L);
 void findSis(list_siswa L);
 void findRel(list_relasi LR, list_instruktur LI, list_siswa LS);
+void printSis(list_relasi LR, list_siswa LS);
 void printRel(list_relasi LR);
 void printSiswaFromIns(list_relasi LR);
 void printInsFromSiswa(list_relasi LR);
 int countSiswaFromInst(list_relasi L, infotype_instruktur p);
 int countInstFromSiswa(list_relasi L, infotype_siswa p);
+void siswaWithMaxInst(list_relasi LR, list_siswa LS);
+void siswaWithMinInst(list_relasi LR, list_siswa LS);
 #endif // MAIN_PROCEDURE_H_INCLUDED

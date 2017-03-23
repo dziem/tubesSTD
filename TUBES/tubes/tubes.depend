@@ -5,7 +5,7 @@
 1488499343 e:\strukdat\tubes\tubes\list_instruktur.h
 	<iostream>
 
-1489237778 source:e:\strukdat\tubes\tubes\list_relasi.cpp
+1490260712 source:e:\strukdat\tubes\tubes\list_relasi.cpp
 	"list_relasi.h"
 
 1489235984 e:\strukdat\tubes\tubes\list_relasi.h
@@ -28,6 +28,6 @@
 	<conio.h>
 	"list_relasi.h"
 
-1489560553 source:e:\strukdat\tubes\tubes\main_procedure.cpp
+1490260530 source:e:\strukdat\tubes\tubes\main_procedure.cpp
 	"main_procedure.h"
 

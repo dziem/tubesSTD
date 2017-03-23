@@ -11,7 +11,7 @@ int menu(){
     cout << "Pilih operasi list" << endl;
     cout << "1. Insert / Add" << endl;
     cout << "2. Delete" << endl;
-    cout << "3. Find / search" << endl;
+    cout << "3. Find / Search" << endl;
     cout << "4. Print" << endl;
     cout << "0. Exit" << endl;
     do{
@@ -326,13 +326,18 @@ void delRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS){
     cin >> s.alamat;
     address_siswa adr_s = findSiswa(LS, s);
     if(adr_i != nil && adr_s != nil){
-        infotype_relasi r;
-        r.instruktur = adr_i;
-        r.siswa = adr_s;
-        deleteRelasi(LR,r);
-        cout << endl << "Berhasil menghapus relasi" << endl;
+        int j = countInstFromSiswa(LR, s);
+        if(j == 1){
+            cout << "Gagal menghapus relasi, siswa " << s.nama << " tidak boleh tidak memiliki instruktur" << endl;
+        }else{
+            infotype_relasi r;
+            r.instruktur = adr_i;
+            r.siswa = adr_s;
+            deleteRelasi(LR,r);
+            cout << endl << "Berhasil menghapus relasi" << endl;
+        }
     }else{
-        cout << endl << "Gagal menghapus relasi" << endl;
+        cout << endl << "Gagal menghapus relasi, elemen yang diinput tidak ada di relasi" << endl;
     }
 }
 

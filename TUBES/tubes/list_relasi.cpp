@@ -119,7 +119,7 @@ void printRelasi(list_relasi L){
 address_relasi findRelasi(list_relasi L, infotype_relasi P){
     if(first(L) != nil && last(L) != nil && P.siswa != nil && P.instruktur != nil){
         address_relasi q = first(L);
-        while(next(q) != nil && addressSiswa(q) != P.siswa && addressInstruktur(q) != P.instruktur){
+        while(q != nil && addressSiswa(q) != P.siswa && addressInstruktur(q) != P.instruktur){
             q = next(q);
         }
         if(addressSiswa(q) == P.siswa && addressInstruktur(q) == P.instruktur){

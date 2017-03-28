@@ -562,7 +562,7 @@ int countInstFromSiswa(list_relasi L, infotype_siswa p){
     }
 }
 void siswaWithMaxInst(list_relasi LR, list_siswa LS){
-    if(first(LR) != nil && first(LS)){
+    if(first(LR) != nil && first(LS) != nil){
         int maxx,i;
         address_siswa q = first(LS);
         address_siswa address_max = first(LS);
@@ -586,7 +586,7 @@ void siswaWithMaxInst(list_relasi LR, list_siswa LS){
     }
 }
 void siswaWithMinInst(list_relasi LR, list_siswa LS){
-    if(first(LR) != nil && first(LS)){
+    if(first(LR) != nil && first(LS) != nil){
         int minn,i;
         address_siswa q = first(LS);
         address_siswa address_min = first(LS);

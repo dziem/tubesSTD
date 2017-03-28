@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1489271966 source:e:\strukdat\tubes\tubes\list_instruktur.cpp
+1490399709 source:e:\strukdat\tubes\tubes\list_instruktur.cpp
 	"list_instruktur.h"
 
 1488499343 e:\strukdat\tubes\tubes\list_instruktur.h
 	<iostream>
 
-1490260712 source:e:\strukdat\tubes\tubes\list_relasi.cpp
+1490399474 source:e:\strukdat\tubes\tubes\list_relasi.cpp
 	"list_relasi.h"
 
 1489235984 e:\strukdat\tubes\tubes\list_relasi.h
@@ -28,6 +28,6 @@
 	<conio.h>
 	"list_relasi.h"
 
-1490260530 source:e:\strukdat\tubes\tubes\main_procedure.cpp
+1490263116 source:e:\strukdat\tubes\tubes\main_procedure.cpp
 	"main_procedure.h"
 

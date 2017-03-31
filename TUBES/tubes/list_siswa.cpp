@@ -48,7 +48,7 @@ void deleteLastSiswa(list_siswa &L){
             deleteFirstSiswa(L);
         }else{
             address_siswa P = last(L);
-            last(L) = prev(first(L));
+            last(L) = prev(last(L));
             next(last(L)) = nil;
             dealokasiSiswa(P);
         }

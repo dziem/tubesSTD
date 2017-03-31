@@ -329,11 +329,54 @@ void delRelasi(list_relasi &LR, list_instruktur LI, list_siswa LS){
         int j = countInstFromSiswa(LR, s);
         if(j == 1){
             cout << "Gagal menghapus relasi, siswa " << s.nama << " tidak boleh tidak memiliki instruktur" << endl;
+            bool stopYN = false;
+            do{
+                cout << "Apakah relasi antara siswa " << s.nama << " dan instruktur " << i.nama << " tetap ingin dihapus ? (y/n) : ";
+                string q;
+                cin >> q;
+                if(q == "y" || q == "Y"){
+                    infotype_instruktur ins;
+                    cout << endl << "Masukkan instruktur baru untuk siswa " << s.nama << endl;
+                    cout << "Masukkan nama instruktur baru untuk siswa " << s.nama << " : ";
+                    cin >> ins.nama;
+                    cout << "Masukkan nomor telepon instruktur baru untuk siswa " << s.nama << " : ";
+                    cin >> ins.telp;
+                    address_instruktur adr_ins = findInstruktur(LI, ins);
+                    if(adr_ins != nil && adr_s != nil){
+                        int j = countSiswaFromInst(LR, ins);
+                        if(j < 5){
+                            infotype_relasi r;
+                            r.instruktur = adr_ins;
+                            r.siswa = adr_s;
+                            insertRelasi(LR, alokasiRelasi(r));
+                            cout << endl << "Berhasil menambahkan instruktur baru dari siswa " << s.nama << endl;
+                            infotype_relasi rel;
+                            rel.instruktur = adr_i;
+                            rel.siswa = adr_s;
+                            deleteRelasi(LR, rel);
+                            cout << "Relasi antara siswa " << s.nama << " dan instruktur " << i.nama << " berhasil dihapus" << endl;
+                        }else{
+                            cout << endl << "Gagal menambahkan relasi, kuota siswa instruktur sudah penuh" << endl;
+                            cout << "Relasi antara siswa " << s.nama << " dan instruktur " << i.nama << " tidak dihapus" << endl;
+                        }
+                    }else{
+                        cout << endl << "Gagal menambahkan relasi" << endl;
+                        cout << "Relasi antara siswa " << s.nama << " dan instruktur " << i.nama << " tidak dihapus" << endl;
+                    }
+                    stopYN = true;
+                }else if(q == "n" || q == "N"){
+                    cout << "Relasi antara siswa " << s.nama << " dan instruktur " << i.nama << " tidak dihapus" << endl;
+                    stopYN = true;
+                }else{
+                    cout << "Input salah, harus y atau n" << endl;
+                    stopYN = false;
+                }
+            }while(stopYN != true);
         }else{
-            infotype_relasi r;
-            r.instruktur = adr_i;
-            r.siswa = adr_s;
-            deleteRelasi(LR,r);
+            infotype_relasi rel;
+            rel.instruktur = adr_i;
+            rel.siswa = adr_s;
+            deleteRelasi(LR,rel);
             cout << endl << "Berhasil menghapus relasi" << endl;
         }
     }else{

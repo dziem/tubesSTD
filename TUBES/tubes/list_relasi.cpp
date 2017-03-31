@@ -48,7 +48,7 @@ void deleteLastRelasi(list_relasi &L){
            deleteFirstRelasi(L);
         }else{
             address_relasi P = last(L);
-            last(L) = prev(first(L));
+            last(L) = prev(last(L));
             next(last(L)) = nil;
             dealokasiRelasi(P);
         }
